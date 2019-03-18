@@ -36,6 +36,7 @@ char *find_char(char *str, int c)
      return &"\0";
 }
 
+// init
 /*
     Searches the input string `haystack` for the first instance of
     the string `needle`. This function returns a pointer that points
