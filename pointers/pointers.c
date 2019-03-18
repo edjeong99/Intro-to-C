@@ -8,13 +8,13 @@
 */
 void string_copy(char *x, char *y)
 {
-    while *y != '\0'{
+    while (*y != '\0'){
         x = y;
         x++;
-        y++
+        y++;
     }
-
-    *x+1 = '\0';
+    x++;
+    *x = '\0';
 }
 
 /*
@@ -27,16 +27,17 @@ void string_copy(char *x, char *y)
 */
 char *find_char(char *str, int c)
 {
-    while(*str != "\n"){
+    while(*str != "\0"){
         if(*str == c){
-            return *str
+            return str
         }
+        str++;
        
     }
      return &"\0";
 }
 
-// init
+
 /*
     Searches the input string `haystack` for the first instance of
     the string `needle`. This function returns a pointer that points
@@ -47,13 +48,12 @@ char *find_char(char *str, int c)
 */
 char *find_string(char *haystack, char *needle)
 {
-    bool matched = false;
     char *found_char;
     char *current_haystack;
 
     *found_char = find_char(haystack, *needle);
 
-    while(found_char != "\0"){
+    while(*found_char != "\0"){
         current_haystack = found_char;
         while(*needle != "\0"){
             if (*found_char != *needle){
@@ -63,14 +63,15 @@ char *find_string(char *haystack, char *needle)
                 current_haystack++;
                 needle++;
             }
+            needle++;
+        }
         if (*needle == "\0"){
-            return *current_haystack;
+           return current_haystack;
         }
-        }
-
+        found_char = find_char(current_haystack, *needle);
     }
 
-    }
+    
 }
 
 #ifndef TESTING
