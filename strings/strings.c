@@ -9,7 +9,16 @@
 */
 int string_length(char s[])
 {
-
+    int counter = 0;
+    
+    while (*s){
+    //    printf("s is %c\n", *s);
+    //    if(*s == "\0") printf("NULL111111");
+        // if(*s == NULL) printf("NULL2222222");
+       counter++;
+       s++;
+   }
+   return counter;
 }
 
 /*
