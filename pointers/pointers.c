@@ -9,7 +9,7 @@
 void string_copy(char *x, char *y)
 {
     while (*y != '\0'){
-        x = y;
+        *x = *y;
         x++;
         y++;
     }
@@ -29,7 +29,7 @@ char *find_char(char *str, int c)
 {
     while(*str != "\0"){
         if(*str == c){
-            return str
+            return str;
         }
         str++;
        
@@ -51,11 +51,11 @@ char *find_string(char *haystack, char *needle)
     char *found_char;
     char *current_haystack;
 
-    *found_char = find_char(haystack, *needle);
+    found_char = find_char(haystack, *needle);
 
-    while(*found_char != "\0"){
+    while(*found_char){
         current_haystack = found_char;
-        while(*needle != "\0"){
+        while(*needle){
             if (*found_char != *needle){
                 break;
             }
@@ -65,7 +65,7 @@ char *find_string(char *haystack, char *needle)
             }
             needle++;
         }
-        if (*needle == "\0"){
+        if (*needle == NULL){
            return current_haystack;
         }
         found_char = find_char(current_haystack, *needle);
