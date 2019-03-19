@@ -2,6 +2,16 @@
 #include <string.h>
 #include "../../utils/minunit.h"
 #include "../../utils/utils.h"
+char *test_string_copy()
+{
+    char *string = "hello, world";
+    char empty[20];
+
+    string_copy(empty, string);
+    mu_assert(check_strings(empty, string) == 0, "Your string_copy did not correctly copy the given string.");
+
+    return NULL;
+}
 
 char *test_find_char()
 {
@@ -42,7 +52,7 @@ char *test_find_string()
 char *all_tests()
 {
     mu_suite_start();
-
+mu_run_test(test_string_copy);
     mu_run_test(test_find_char);
     mu_run_test(test_find_string);
 
