@@ -50,28 +50,35 @@ char *find_string(char *haystack, char *needle)
 {
     char *found_char;
     char *current_haystack;
+    char *current_needle;
 
     found_char = find_char(haystack, *needle);
 
     while(*found_char){
         current_haystack = found_char;
-        while(*needle){
-            if (*found_char != *needle){
+        current_needle = needle;
+        while(*current_needle ){
+            
+            if (*current_haystack != *current_needle){
                 break;
             }
             else{
                 current_haystack++;
-                needle++;
-            }
-            needle++;
-        }
-        if (*needle == NULL){
-           return current_haystack;
-        }
-        found_char = find_char(current_haystack, *needle);
-    }
+                current_needle++;
 
+             }
+            if (*current_needle == NULL){
+            return found_char;
+            }
+            else if(*current_haystack == NULL){
+                return NULL;
+            }
+        }
+
+        found_char = find_char(found_char+1, *needle);
     
+
+    }
 }
 
 #ifndef TESTING
