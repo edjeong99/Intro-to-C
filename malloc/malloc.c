@@ -12,9 +12,21 @@
 */
 char *string_dup(char *src)
 {
+    int strLen = strlen(src);
 
+    char *mem = malloc( strLen * sizeof(char));
+   
+    for(int i = 0; i < strLen; i++){
+
+        mem[i] = *src;
+        src++;
+    }
+
+
+    return mem;
 }
-
+ 
+ 
 /*
     A generic version of string_copy, mem_copy receives a block of memory
     of any type and copies its contents to the destination pointer (dest).
@@ -24,7 +36,17 @@ char *string_dup(char *src)
 */
 void mem_copy(void *dest, const void *src, int n)
 {
+    char *cast_dest = (char *)dest;
+    char *cast_src = (char *)src;
 
+
+    for(int i = 0; i < n; i++){
+
+        *cast_dest = *cast_src;
+        cast_dest++;
+        cast_src++;
+    }
+   
 }
 
 /*
@@ -65,22 +87,22 @@ int main(void)
 
     printf("\n");
 
-    char *url = string_dup("http://lambdaschool.com");
-    char *path = string_dup("/students/");
-    int url_length = string_length(url);
-    int path_length = string_length(path);
+    // char *url = string_dup("http://lambdaschool.com");
+    // char *path = string_dup("/students/");
+    // int url_length = string_length(url);
+    // int path_length = string_length(path);
     
-    int new_length = url_length - 1 + path_length;
-    char *new_url = resize_memory(url, url_length, new_length);
-    char *p = new_url + url_length;
+    // int new_length = url_length - 1 + path_length;
+    // char *new_url = resize_memory(url, url_length, new_length);
+    // char *p = new_url + url_length;
 
-    while (*path != '\0') {
-        *p = *path;
-        p++;
-        path++;
-    }
+    // while (*path != '\0') {
+    //     *p = *path;
+    //     p++;
+    //     path++;
+    // }
 
-    printf("Full path string: %s\n", new_url);
+    // printf("Full path string: %s\n", new_url);
 
     return 0;
 }
