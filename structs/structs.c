@@ -2,14 +2,23 @@
 #include <stdlib.h>
 #include "lib.h"
 
+
+
+
 /* 
     Define the Person struct by specifying the fields that make up the
     Person type. Don't forget to specify the type of each field. A 
     Person should have the fields `name`, `age`, `height`, and `weight`.
 */
 typedef struct Person {
+  char *name;
+  int age;
+  int height;
+  int weight;
 
 } Person;
+
+
 
 /*
     Creates an instance of the Person struct that receives all the relevant
@@ -21,16 +30,26 @@ typedef struct Person {
 */
 Person *createPerson(char *name, int age, int height, int weight)
 {
-
+    Person *person = malloc(sizeof(Person));
+    // I tried to copy and paste string_dup to use below
+    // but error message says redefinition (from lib.h)
+    // so, I didn't define string_dup in this file
+    
+    person->name = string_dup(name);
+    person->age = age;
+    person->height = height;
+    person->weight = weight;
+    return person;
 }
-
+ 
 /*
     Given a pointer to a Person struct, frees up the memory that holds the
     Person's name as well as the memory that holds the Person instance.
 */
 void destroyPerson(Person *who)
 {
-
+    free(who->name);
+    free(who);
 }
 
 #ifndef TESTING
