@@ -17,13 +17,13 @@ char *string_dup(char *src)
     char *mem = malloc( strLen * sizeof(char));
    
     for(int i = 0; i < strLen; i++){
-
-        *(mem + i) = *(src + i);
-        
+        mem[i] = *src;
+        src++;
     }
+    mem[strLen] = '\0';
 
-    printf("String_DUP  %c\n", *mem);
-    return mem;
+ printf("String_DUP  %s \n", mem);
+    return mem;   
 }
  
  
@@ -61,28 +61,24 @@ void mem_copy(void *dest, const void *src, int n)
 */
 void *resize_memory(void *ptr, int old_size, int new_size)
 {
-    printf("Resize ");
+
     char *cast_ptr = (char *)ptr;
-    char *new_mem = malloc( new_size * sizeof(char));   
+    
     int size = new_size;
 
     if ( new_size > old_size) {
-
      size = old_size;
-
     }
- printf("Before For ");
+    char *new_mem = malloc( size * sizeof(char));   
+
  
-    for (int i; i < size; i++){
+    for (int i = 0; i < size; i++){
         printf("In For %c\n", *(cast_ptr + i));
        *(new_mem + i) = *(cast_ptr + i);
         }
     
+    return new_mem;
 }
-
-    
-
-
 
 
 #ifndef TESTING
@@ -107,11 +103,13 @@ int main(void)
 
     printf("\n");
 
+printf("Before string_dup \n");
     char *url = string_dup("http://lambdaschool.com");
     char *path = string_dup("/students/");
+    
     int url_length = string_length(url);
     int path_length = string_length(path);
-    
+     printf("after string_length ");
     int new_length = url_length - 1 + path_length;
     char *new_url = resize_memory(url, url_length, new_length);
     char *p = new_url + url_length;
@@ -124,6 +122,6 @@ int main(void)
 
     printf("Full path string: %s\n", new_url);
 
-    return 0;
+     return 0;
 }
 #endif
